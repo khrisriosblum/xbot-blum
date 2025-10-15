@@ -1,0 +1,43 @@
+
+services:
+  - type: web
+    name: x-bot
+    env: docker
+    plan: free
+    autoDeploy: true
+    disk:
+      name: xbot-disk
+      mountPath: /data
+      sizeGB: 1
+    envVars:
+      - key: EXCEL_PATH
+        value: /data/tracks.xlsx
+      - key: TIMEZONE
+        value: Europe/Madrid
+      - key: DRY_RUN
+        value: "true"
+      - key: DB_PATH
+        value: /data/bot.db
+      - key: POST_TIMES
+        value: 10:00,13:00,16:00,19:00,22:00
+      - key: JITTER_MINUTES
+        value: "15"
+      - key: SLEEP_BEFORE_PUBLISH
+        value: "15"
+      - key: DEDUP_DAYS
+        value: "70"
+      - key: RECENT_DAYS
+        value: "2"
+      - key: SOUND_CLOUD_EVERY_N_DAYS
+        value: "3"
+      - key: SPOTIFY_TOPS_EVERY_N_DAYS
+        value: "10"
+      # Set X credentials in Render dashboard secrets (never commit)
+      - key: X_API_KEY
+        sync: false
+      - key: X_API_SECRET
+        sync: false
+      - key: X_ACCESS_TOKEN
+        sync: false
+      - key: X_ACCESS_SECRET
+        sync: false
